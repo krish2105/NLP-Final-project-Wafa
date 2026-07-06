@@ -1,0 +1,32 @@
+{
+  "by_group": {
+    "East_Asia": {
+      "n": 44,
+      "mean_churn_proba": 0.3573,
+      "std_churn_proba": 0.4262
+    },
+    "MENA": {
+      "n": 43,
+      "mean_churn_proba": 0.28,
+      "std_churn_proba": 0.4021
+    },
+    "South_Asia": {
+      "n": 49,
+      "mean_churn_proba": 0.3524,
+      "std_churn_proba": 0.407
+    },
+    "Southeast_Asia": {
+      "n": 44,
+      "mean_churn_proba": 0.3579,
+      "std_churn_proba": 0.4365
+    },
+    "Western": {
+      "n": 60,
+      "mean_churn_proba": 0.2691,
+      "std_churn_proba": 0.3837
+    }
+  },
+  "max_minus_min_mean_proba": 0.0888,
+  "note": "nationality_region was NEVER a training feature. This audit checks the model is not implicitly proxying it. A spread under ~0.10 is considered roughly even across regions.",
+  "verdict": "roughly even"
+}

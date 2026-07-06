@@ -1,0 +1,571 @@
+{
+  "translated": false,
+  "models": {
+    "tfidf_issue": {
+      "model": "tfidf_logreg",
+      "target": "issue_type",
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "classification_report": {
+        "Account_Closure": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "Remittance_Transfer": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "Loan_Mortgage": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "Fees_Charges": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "Card_Services": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "App_Technical": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "General_Query": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 63.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 63.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          9,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          9,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          9,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          9,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          9,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          9
+        ]
+      ],
+      "labels": [
+        "Account_Closure",
+        "Remittance_Transfer",
+        "Loan_Mortgage",
+        "Fees_Charges",
+        "Card_Services",
+        "App_Technical",
+        "General_Query"
+      ],
+      "mean_confidence": 0.7602,
+      "test_confidence": [
+        0.8781542059742868,
+        0.563223358740332,
+        0.8447846773567326,
+        0.9226739582732644,
+        0.7991484335066897,
+        0.7505309486140628,
+        0.4197498481570808,
+        0.8654866966370551,
+        0.8390007001425763,
+        0.8775279892473297,
+        0.7733797408327802,
+        0.4816263560307328,
+        0.6905302464346253,
+        0.867664687506439,
+        0.8241789306865754,
+        0.6405823230639889,
+        0.7017145132022332,
+        0.8922141533855421,
+        0.8782326996590951,
+        0.5808465884216564,
+        0.8371784166387848,
+        0.8054465860571153,
+        0.8388160144321402,
+        0.31852702049983206,
+        0.7159976999079056,
+        0.6914452791203791,
+        0.893354013373341,
+        0.8188264979692378,
+        0.7570633093324949,
+        0.7859906269142356,
+        0.7771716080209445,
+        0.5035780293979111,
+        0.8444644261477808,
+        0.9403842698923276,
+        0.859903820504457,
+        0.381932527424347,
+        0.7206409555103563,
+        0.7271045380463725,
+        0.7248349462540298,
+        0.9188135663636317,
+        0.7516119987305794,
+        0.7411982186559114,
+        0.8170152141871365,
+        0.8575223095319352,
+        0.43581069355751356,
+        0.8621666337202278,
+        0.8943373656600637,
+        0.9464463050380403,
+        0.7894430167208274,
+        0.9261215487798884,
+        0.456376850544221,
+        0.5328482997669584,
+        0.7801101706028399,
+        0.8306081048462375,
+        0.7694366421151221,
+        0.5647612091631833,
+        0.859010605073241,
+        0.8282360455738733,
+        0.8267888215937138,
+        0.9052556599419871,
+        0.8601052074944312,
+        0.8444644261477808,
+        0.858917908692497
+      ]
+    },
+    "tfidf_churn": {
+      "model": "tfidf_logreg",
+      "target": "churn_signal",
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "classification_report": {
+        "Low": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 22.0
+        },
+        "Medium": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 17.0
+        },
+        "High": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 24.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 63.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 63.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          22,
+          0,
+          0
+        ],
+        [
+          0,
+          17,
+          0
+        ],
+        [
+          0,
+          0,
+          24
+        ]
+      ],
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "mean_confidence": 0.8494,
+      "test_confidence": [
+        0.8987673022394757,
+        0.4514068780765053,
+        0.9273491999343291,
+        0.8921907629864616,
+        0.8186246270334706,
+        0.9041349425021841,
+        0.8432032069145337,
+        0.9088819004520521,
+        0.9376366331455965,
+        0.8889817802849699,
+        0.8508588140349662,
+        0.6358968598613152,
+        0.8338952725457092,
+        0.8033803468449894,
+        0.9672502034822072,
+        0.6774632136574412,
+        0.8443246080420518,
+        0.9363491753653878,
+        0.8505218480768566,
+        0.9224667137730936,
+        0.9125583834487464,
+        0.7263209495739124,
+        0.9126015473392176,
+        0.8861386211043915,
+        0.6706114979474821,
+        0.9159412059121542,
+        0.8778305678844295,
+        0.9503379696271339,
+        0.9099892726981418,
+        0.8913574814437437,
+        0.9364778180542424,
+        0.7034889372630252,
+        0.6381699751287752,
+        0.9392025614985371,
+        0.7091211845249709,
+        0.6863776439113723,
+        0.9377926886704622,
+        0.7784499195728448,
+        0.8808002525273333,
+        0.9013102657102778,
+        0.9573281156453227,
+        0.9378501207144937,
+        0.8884296805758978,
+        0.9431684474505874,
+        0.9066016435474094,
+        0.8700674508483042,
+        0.8919021829184348,
+        0.9388414428182369,
+        0.9334895442452816,
+        0.9129354740774702,
+        0.7824925924358893,
+        0.7136203411759827,
+        0.7133942855484886,
+        0.7938395464162067,
+        0.9280942121523741,
+        0.6342508085579884,
+        0.9266110573440662,
+        0.8753707259608509,
+        0.9180395506338036,
+        0.9601268964029969,
+        0.9522128704876195,
+        0.6381699751287752,
+        0.937760792109576
+      ]
+    },
+    "distilbert_issue": {
+      "model": "distilbert",
+      "target": "issue_type",
+      "accuracy": 0.9841,
+      "macro_f1": 0.9841,
+      "classification_report": {
+        "Account_Closure": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "Remittance_Transfer": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "Loan_Mortgage": {
+          "precision": 1.0,
+          "recall": 0.8888888888888888,
+          "f1-score": 0.9411764705882353,
+          "support": 9.0
+        },
+        "Fees_Charges": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "Card_Services": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "App_Technical": {
+          "precision": 0.9,
+          "recall": 1.0,
+          "f1-score": 0.9473684210526315,
+          "support": 9.0
+        },
+        "General_Query": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 9.0
+        },
+        "accuracy": 0.9841269841269841,
+        "macro avg": {
+          "precision": 0.9857142857142858,
+          "recall": 0.9841269841269842,
+          "f1-score": 0.9840778416629811,
+          "support": 63.0
+        },
+        "weighted avg": {
+          "precision": 0.9857142857142858,
+          "recall": 0.9841269841269841,
+          "f1-score": 0.984077841662981,
+          "support": 63.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          9,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          9,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          8,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          9,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          9,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          9,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          9
+        ]
+      ],
+      "labels": [
+        "Account_Closure",
+        "Remittance_Transfer",
+        "Loan_Mortgage",
+        "Fees_Charges",
+        "Card_Services",
+        "App_Technical",
+        "General_Query"
+      ],
+      "mean_confidence": 0.9127,
+      "epochs": 12
+    },
+    "distilbert_churn": {
+      "model": "distilbert",
+      "target": "churn_signal",
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "classification_report": {
+        "Low": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 22.0
+        },
+        "Medium": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 17.0
+        },
+        "High": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 24.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 63.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 63.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          22,
+          0,
+          0
+        ],
+        [
+          0,
+          17,
+          0
+        ],
+        [
+          0,
+          0,
+          24
+        ]
+      ],
+      "labels": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "mean_confidence": 0.9868,
+      "epochs": 12
+    }
+  },
+  "per_language_fairness": {
+    "per_language": {
+      "ar": {
+        "language_name": "Arabic",
+        "n": 12,
+        "accuracy": 1.0,
+        "mean_confidence": 0.7615
+      },
+      "en": {
+        "language_name": "English",
+        "n": 30,
+        "accuracy": 1.0,
+        "mean_confidence": 0.8239
+      },
+      "hi": {
+        "language_name": "Hindi",
+        "n": 6,
+        "accuracy": 1.0,
+        "mean_confidence": 0.7255
+      },
+      "tl": {
+        "language_name": "Tagalog",
+        "n": 15,
+        "accuracy": 1.0,
+        "mean_confidence": 0.6455
+      }
+    },
+    "english_minus_other_accuracy_gap": {
+      "ar": 0.0,
+      "hi": 0.0,
+      "tl": 0.0
+    },
+    "note": "Same underlying issues phrased across 4 languages, run through the full pipeline. Lower non-English accuracy is a documented limitation (translation quality + training on raw/short multilingual text)."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "selected_model": "logistic_regression",
+  "all_candidates": {
+    "logistic_regression": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0
+    },
+    "random_forest": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0
+    }
+  },
+  "best_metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "roc_auc": 1.0
+  },
+  "confusion_matrix": [
+    [
+      43,
+      0
+    ],
+    [
+      0,
+      17
+    ]
+  ],
+  "permutation_importance": {
+    "balance_trend_3m": 0.33388,
+    "intl_transfer_spike": 0.00046,
+    "avg_balance_aed": 9e-05,
+    "tenure_months": 0.0,
+    "products_held": 0.0,
+    "salary_credit_active": 0.0,
+    "remittance_count_3m": 0.0,
+    "complaints_6m": 0.0,
+    "branch_visits_trend": 0.0,
+    "clv_estimate_aed": 0.0,
+    "segment": 0.0
+  },
+  "n_train": 180,
+  "n_test": 60,
+  "features_used": [
+    "tenure_months",
+    "products_held",
+    "avg_balance_aed",
+    "balance_trend_3m",
+    "salary_credit_active",
+    "remittance_count_3m",
+    "intl_transfer_spike",
+    "complaints_6m",
+    "branch_visits_trend",
+    "clv_estimate_aed",
+    "segment"
+  ],
+  "excluded_protected_attribute": "nationality_region"
+}

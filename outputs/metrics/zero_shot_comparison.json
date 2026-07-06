@@ -1,0 +1,32 @@
+{
+  "task": "issue_type (7-way)",
+  "sample_size": 42,
+  "sample_per_class": 6,
+  "results": {
+    "tfidf_logreg": {
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "type": "trained (classical)"
+    },
+    "distilbert": {
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "type": "trained (fine-tuned transformer)"
+    },
+    "zero_shot_qwen0.5b": {
+      "accuracy": 0.5476,
+      "macro_f1": 0.4986,
+      "type": "zero-shot (no training, prompt only)"
+    }
+  },
+  "winner": "tfidf_logreg",
+  "zero_shot_accuracy_by_language": {
+    "ar": 0.5556,
+    "en": 0.6364,
+    "hi": 0.0,
+    "tl": 0.5
+  },
+  "finding": "On 42 stratified messages, the trained models (tfidf_logreg, distilbert) far outperform the zero-shot Qwen-0.5B LLM (0.55 acc). At this data scale, a small OWNED model wins on accuracy, latency, cost and privacy — the zero-shot LLM struggles on short, templated, multilingual text with an English-first tokenizer. This is the expected and honest result the brief asks us to report.",
+  "honesty_caveat": "The sample is drawn from the full dataset, so the trained models may have seen some of these rows during training — their 1.00 here partly reflects memorization. The FAIR reference is the held-out test split (TF-IDF issue 1.00, DistilBERT 0.984). The zero-shot model saw no training data, so its number is a clean generalization read. Even against the held-out trained numbers, zero-shot loses decisively.",
+  "ethics_note": "Zero-shot per-language accuracy is very uneven (see zero_shot_accuracy_by_language) — notably weak on Hindi — reinforcing the multilingual-fairness concern: an unguarded prompted LLM would deliver worse service in some languages."
+}

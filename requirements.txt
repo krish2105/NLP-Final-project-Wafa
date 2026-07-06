@@ -1,0 +1,26 @@
+# Core (required — the platform runs on these alone, CPU-only)
+pandas
+numpy
+scikit-learn
+joblib
+matplotlib
+seaborn
+streamlit
+plotly
+pydantic
+
+# NLP / transformers (enable the DistilBERT + translation + LLM routes).
+# The platform degrades gracefully to trained TF-IDF + rule-based drafts if
+# these are absent, so they are effectively optional for a first run.
+torch
+transformers
+accelerate>=1.1.0
+sentencepiece
+sacremoses
+spacy
+sentence-transformers
+langdetect
+
+# Optional accelerators (safe to skip on CPU laptops)
+xgboost
+bitsandbytes
