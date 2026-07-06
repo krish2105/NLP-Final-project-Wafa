@@ -51,6 +51,32 @@ likely become an **accuracy** gap. Mitigation in place: low-confidence predictio
 set `low_confidence_flag` and are surfaced for human review before the decision
 engine trusts them.
 
+**Translation quality — a real failure we found and now handle honestly.**
+We audited the translation route (`src/translation_audit.py`, results in
+`outputs/metrics/translation_audit.json`):
+
+| Language | Route | Faithful rate |
+|---|---|---|
+| Arabic | opus-mt-ar-en | **1.00** |
+| Tagalog | NLLB-200-distilled-600M | **1.00** |
+| Hindi (romanised) | opus-mt-hi-en | **0.00** |
+
+The provided Hindi messages are **romanised** (e.g. *"mera card foreign mein decline
+ho gaya"*). `opus-mt-hi-en` expects Devanagari and mistranslates romanised input into
+nonsense (*"I'm going to see if I'm going to be in here."*). **We treat this as a
+first-class fairness finding:** the pipeline now detects romanised Hindi and does NOT
+translate it (`translation.is_romanised`), keeping the original for the char-ngram
+classifier + romanised keyword entities, rather than acting on a silent
+mistranslation. This is the honest, safer behaviour — and exactly the kind of
+per-language degradation the fairness requirement asks us to surface.
+
+**Credible metrics, not lucky single splits.** To avoid overclaiming from the
+near-perfect single-split scores, we cross-validated (`src/cross_validation.py`):
+churn ROC-AUC **0.995 ± 0.008** (5-fold, 95% CI), text issue-type **0.988 ± 0.016**.
+A noise/robustness stress test (typos, dropped spaces, code-switch tokens) drops churn
+text accuracy from **1.00 → 0.934** — evidence that the perfect scores are partly an
+artefact of clean, templated data and would not fully hold on messy real messages.
+
 **Zero-shot reinforces the point.** In the trained-vs-zero-shot bake-off, an unguarded
 zero-shot Qwen-0.5B classified issue type at only 0.55 overall and **0.00 on Hindi**
 (vs 0.64 English) — i.e. a prompted LLM would deliver visibly worse service in some

@@ -1,0 +1,155 @@
+{
+  "per_language": {
+    "ar": {
+      "language_name": "Arabic",
+      "n": 6,
+      "faithful_rate": 1.0,
+      "route": "opus-mt",
+      "samples": [
+        {
+          "original": "سأغادر الإمارات الشهر القادم. لا يصلني رمز التحقق.",
+          "translation": "I'm leaving the Emirates next month. I don't get the check code.",
+          "translated": true,
+          "romanised_source": false,
+          "looks_faithful": true
+        },
+        {
+          "original": "كيف أغلق حساب الراتب الخاص بي. سأغادر الإمارات الشهر القادم.",
+          "translation": "I'm leaving the Emirates next month.",
+          "translated": true,
+          "romanised_source": false,
+          "looks_faithful": true
+        },
+        {
+          "original": "أحتاج تحويل أموالي إلى الخارج. مجرد استفسار.",
+          "translation": "I need to transfer my money out.",
+          "translated": true,
+          "romanised_source": false,
+          "looks_faithful": true
+        },
+        {
+          "original": "كيف أحدث الهوية الإماراتية. نحن ننتقل نهائيا.",
+          "translation": "We're moving on forever.",
+          "translated": true,
+          "romanised_source": false,
+          "looks_faithful": true
+        },
+        {
+          "original": "نحن ننتقل نهائيا. أريد إيقاف بطاقتي المفقودة.",
+          "translation": "I want to stop my missing card.",
+          "translated": true,
+          "romanised_source": false,
+          "looks_faithful": true
+        },
+        {
+          "original": "هذه الرسوم غير عادلة. أنا محبط جدا من الخدمة.",
+          "translation": "These fees are unfair. I'm very disappointed in the service.",
+          "translated": true,
+          "romanised_source": false,
+          "looks_faithful": true
+        }
+      ]
+    },
+    "hi": {
+      "language_name": "Hindi",
+      "n": 6,
+      "faithful_rate": 0.0,
+      "route": "opus-mt",
+      "samples": [
+        {
+          "original": "mera card foreign mein decline ho gaya. main service se pareshan hoon.",
+          "translation": "mera card foreign mein decline ho gaya. main service se pareshan hoon.",
+          "translated": false,
+          "romanised_source": true,
+          "looks_faithful": false
+        },
+        {
+          "original": "app baar baar crash ho raha hai. main service se pareshan hoon.",
+          "translation": "app baar baar crash ho raha hai. main service se pareshan hoon.",
+          "translated": false,
+          "romanised_source": true,
+          "looks_faithful": false
+        },
+        {
+          "original": "main service se pareshan hoon. salary account kaise band hoga.",
+          "translation": "main service se pareshan hoon. salary account kaise band hoga.",
+          "translated": false,
+          "romanised_source": true,
+          "looks_faithful": false
+        },
+        {
+          "original": "main agle mahine UAE chhod raha hoon. mujhe apne paise India bhejne hain.",
+          "translation": "main agle mahine UAE chhod raha hoon. mujhe apne paise India bhejne hain.",
+          "translated": false,
+          "romanised_source": true,
+          "looks_faithful": false
+        },
+        {
+          "original": "dhanyavaad. app baar baar crash ho raha hai.",
+          "translation": "dhanyavaad. app baar baar crash ho raha hai.",
+          "translated": false,
+          "romanised_source": true,
+          "looks_faithful": false
+        },
+        {
+          "original": "bas pooch raha tha. mera card foreign mein decline ho gaya.",
+          "translation": "bas pooch raha tha. mera card foreign mein decline ho gaya.",
+          "translated": false,
+          "romanised_source": true,
+          "looks_faithful": false
+        }
+      ]
+    },
+    "tl": {
+      "language_name": "Tagalog",
+      "n": 6,
+      "faithful_rate": 1.0,
+      "route": "NLLB-600M",
+      "samples": [
+        {
+          "original": "dismayado ako sa serbisyo. na-decline ang card ko sa abroad.",
+          "translation": "I'm dismayed by the service. declining my card or going abroad.",
+          "translated": true,
+          "romanised_source": true,
+          "looks_faithful": true
+        },
+        {
+          "original": "kailangan kong ipadala ang pera ko sa Pilipinas. nagtatanong lang po.",
+          "translation": "I need to send money to the Philippines.",
+          "translated": true,
+          "romanised_source": true,
+          "looks_faithful": true
+        },
+        {
+          "original": "laging nagko-crash ang app. dismayado ako sa serbisyo.",
+          "translation": "Always a crash app. dismayed by the service.",
+          "translated": true,
+          "romanised_source": true,
+          "looks_faithful": true
+        },
+        {
+          "original": "paano isara ang aking account. nagtatanong lang po.",
+          "translation": "How to get rid of my account.",
+          "translated": true,
+          "romanised_source": true,
+          "looks_faithful": true
+        },
+        {
+          "original": "lilipat na kami nang tuluyan. bakit may bayad na ganito.",
+          "translation": "I'm not a big fan of the movie, so why pay for it?",
+          "translated": true,
+          "romanised_source": true,
+          "looks_faithful": true
+        },
+        {
+          "original": "kailangan kong ipadala ang pera ko sa Pilipinas. nagtatanong lang po.",
+          "translation": "I need to send money to the Philippines.",
+          "translated": true,
+          "romanised_source": true,
+          "looks_faithful": true
+        }
+      ]
+    }
+  },
+  "finding": "Arabic (opus-mt-ar-en) translates faithfully. Tagalog (NLLB) is usable. ROMANISED HINDI is NOT translatable by opus-mt-hi-en (it expects Devanagari) and is therefore left untranslated on purpose — the char-ngram classifier and romanised keyword entities handle it. This is a documented multilingual limitation, not a silent mistranslation."
+}

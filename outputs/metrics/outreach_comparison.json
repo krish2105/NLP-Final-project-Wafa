@@ -1,0 +1,123 @@
+{
+  "n_scenarios": 5,
+  "per_model": {
+    "qwen2.5-0.5b": {
+      "guardrail_pass_rate": 1.0,
+      "on_length_rate": 0.2,
+      "avg_words": 104.4
+    },
+    "flan-t5-base": {
+      "guardrail_pass_rate": 1.0,
+      "on_length_rate": 0.0,
+      "avg_words": 8.0
+    }
+  },
+  "detail": {
+    "qwen2.5-0.5b": {
+      "guardrail_pass_rate": 1.0,
+      "on_length_rate": 0.2,
+      "avg_words": 104.4,
+      "samples": [
+        {
+          "action": "Dignified Goodbye Pathway",
+          "draft": "Dear valued customer,\n\nWe hope this message finds you well. We understand your decision to leave, but we want to assure you of our sincere gratitude for your trust and support.\n\nAs we bid farewell, let us take a moment t",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 10,
+          "word_count": 137,
+          "on_length": false
+        },
+        {
+          "action": "Fee Waiver / Service Recovery",
+          "draft": "**Dear valued customer**, \n\nWe understand how important it is to manage your finances effectively. To ensure we can continue providing the best service possible, please consider our fee waiver program. This initiative ai",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 10,
+          "word_count": 130,
+          "on_length": false
+        },
+        {
+          "action": "Remittance Support",
+          "draft": "Dear valued customer,\n\nI hope this message finds you well. I am writing to assist you with your international remittance needs. To ensure we can provide the best possible service, could you please confirm if you have alr",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 7,
+          "word_count": 72,
+          "on_length": false
+        },
+        {
+          "action": "Service Fix",
+          "draft": "Dear valued customer,\n\nI hope this message finds you well. I am writing to assist you with your current issue regarding the mobile app. We understand how frustrating it can be to navigate through multiple screens and fin",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 9,
+          "word_count": 117,
+          "on_length": false
+        },
+        {
+          "action": "Standard Information Reply",
+          "draft": "Dear valued customer,\n\nI hope this message finds you well. I am writing to assist you with your inquiry regarding [specific issue or concern]. To provide you with the most effective assistance, could we please schedule a",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 6,
+          "word_count": 66,
+          "on_length": true
+        }
+      ]
+    },
+    "flan-t5-base": {
+      "guardrail_pass_rate": 1.0,
+      "on_length_rate": 0.0,
+      "avg_words": 8.0,
+      "samples": [
+        {
+          "action": "Dignified Goodbye Pathway",
+          "draft": "Be honest, warm, professional, and concise (3-5 sentences).",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 1,
+          "word_count": 8,
+          "on_length": false
+        },
+        {
+          "action": "Fee Waiver / Service Recovery",
+          "draft": "Be honest, warm, professional, and concise (3-5 sentences).",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 1,
+          "word_count": 8,
+          "on_length": false
+        },
+        {
+          "action": "Remittance Support",
+          "draft": "Be honest, warm, professional, and concise (3-5 sentences).",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 1,
+          "word_count": 8,
+          "on_length": false
+        },
+        {
+          "action": "Service Fix",
+          "draft": "Be honest, warm, professional, and concise (3-5 sentences).",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 1,
+          "word_count": 8,
+          "on_length": false
+        },
+        {
+          "action": "Standard Information Reply",
+          "draft": "Be honest, warm, professional, and concise (3-5 sentences).",
+          "guardrail_passed": true,
+          "n_warnings": 0,
+          "sentence_count": 1,
+          "word_count": 8,
+          "on_length": false
+        }
+      ]
+    }
+  },
+  "winner": "qwen2.5-0.5b",
+  "finding": "Across 5 retention scenarios, we picked qwen2.5-0.5b by guardrail pass rate then on-length rate. Qwen2.5-0.5B follows the multi-constraint system prompt more reliably and has far better Arabic — the right default for a UAE bank; FLAN-T5-base is lighter but blander and weaker on non-English. This is the evidence behind the outreach model choice in the ADD."
+}
