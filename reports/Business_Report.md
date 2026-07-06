@@ -2,6 +2,9 @@
 
 **Falcon Bank UAE · Customer Retention Intelligence Platform**
 
+**Team:** Krishna Mathur · Kartik Joshi · Neha Thapa · Harsh Verma · Gagandeep Singh ·
+Tanishk Verma · Anish Borkar · Zedan Parol
+
 ---
 
 ## 1. Executive summary

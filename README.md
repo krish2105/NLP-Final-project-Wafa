@@ -1,5 +1,9 @@
 # 🏦 Project Wafa — Falcon Bank UAE Retention Intelligence Platform
 
+> **MAIB AI 115 · NLP and Models — Final Group Project**
+> **Team:** Krishna Mathur · Kartik Joshi · Neha Thapa · Harsh Verma ·
+> Gagandeep Singh · Tanishk Verma · Anish Borkar · Zedan Parol
+
 A Customer Retention Intelligence Platform for the (fictional) Falcon Bank UAE.
 It triages multilingual customer messages and, for each one:
 

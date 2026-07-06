@@ -1,5 +1,8 @@
 # Project Wafa — 12–15 Minute Demo Script
 
+**Team:** Krishna Mathur · Kartik Joshi · Neha Thapa · Harsh Verma · Gagandeep Singh ·
+Tanishk Verma · Anish Borkar · Zedan Parol
+
 > Backup plan: if the live app fails, play the **2-minute screen recording**
 > (`reports/backup_demo.mp4` — record it during rehearsal) and narrate from these notes.
 

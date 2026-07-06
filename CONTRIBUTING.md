@@ -50,16 +50,16 @@ teammate reviews before merge. `main` should always run.
 
 | Area | Files | Owner |
 |---|---|---|
-| Config & contracts | `src/config.py`, `src/contracts.py` | Student 1 |
-| NLP + entities | `src/nlp_pipeline.py`, `src/translation.py`, `src/entity_extraction.py` | Student 2 |
-| Churn model + fairness | `src/churn_model.py`, `src/train_churn_model.py` | Student 3 |
-| Fusion + decisions | `src/fusion.py`, `src/decision_engine.py` | Student 3 / 4 |
-| Outreach + guardrails | `src/outreach_generator.py`, `src/guardrails.py` | Student 4 |
-| Dashboard + UI | `app.py`, `src/ui.py`, `src/portfolio_summary.py` | Student 5 |
-| Evaluation + notebooks | `src/zero_shot_compare.py`, `notebooks/` | Student 6 |
+| Config, contracts & integration | `src/config.py`, `src/contracts.py`, `src/pipeline.py` | Krishna Mathur |
+| NLP pipeline & translation | `src/nlp_pipeline.py`, `src/translation.py` | Kartik Joshi |
+| Entity extraction & multilingual | `src/entity_extraction.py`, `src/multilingual_native.py` | Neha Thapa |
+| Churn model & fairness | `src/churn_model.py`, `src/train_churn_model.py` | Harsh Verma |
+| Fusion & decision engine | `src/fusion.py`, `src/decision_engine.py` | Gagandeep Singh |
+| Outreach & guardrails | `src/outreach_generator.py`, `src/guardrails.py` | Tanishk Verma |
+| Dashboard, UI & portfolio | `app.py`, `src/ui.py`, `src/portfolio_summary.py`, `src/audit_logger.py` | Anish Borkar |
+| Evaluation & innovation | `src/zero_shot_compare.py`, `src/train_lstm.py`, `src/cross_validation.py`, `notebooks/` | Zedan Parol |
 
-> Replace `Student N` with real names. If two people must touch the same file,
-> talk first and split by function.
+> If two people must touch the same file, talk first and split by function.
 
 ## 4. The interface contracts are frozen
 

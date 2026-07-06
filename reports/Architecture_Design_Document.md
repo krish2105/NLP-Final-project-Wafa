@@ -3,6 +3,9 @@
 **Falcon Bank UAE · Customer Retention Intelligence Platform**
 Listen → Understand → Act
 
+**Team:** Krishna Mathur · Kartik Joshi · Neha Thapa · Harsh Verma · Gagandeep Singh ·
+Tanishk Verma · Anish Borkar · Zedan Parol
+
 ---
 
 ## 1. Project overview & business scenario
@@ -42,21 +45,19 @@ flowchart LR
 
 ## 3. Module boundaries & owners
 
-> **Owners are generic `Student N` placeholders — replace with real team member names before submission.**
+**Team (8 members):** Krishna Mathur · Kartik Joshi · Neha Thapa · Harsh Verma ·
+Gagandeep Singh · Tanishk Verma · Anish Borkar · Zedan Parol
 
 | Module | File | Responsibility | Owner |
 |---|---|---|---|
-| Config & contracts | `src/config.py`, `src/contracts.py` | Paths, label spaces, frozen interfaces | Student 1 |
-| Data loader | `src/data_loader.py` | Clean DataFrames / dict rows | Student 1 |
-| NLP pipeline | `src/nlp_pipeline.py`, `src/translation.py` | Language detect → translate → classify | Student 2 |
-| Entity extraction | `src/entity_extraction.py` | spaCy + regex + multilingual keywords | Student 2 |
-| Churn model | `src/churn_model.py`, `src/train_churn_model.py` | Tabular propensity + fairness audit | Student 3 |
-| Fusion | `src/fusion.py` | Combine text + behaviour into one risk view | Student 3 |
-| Decision engine | `src/decision_engine.py` | Transparent if/elif retention policy | Student 4 |
-| Outreach + guardrails | `src/outreach_generator.py`, `src/guardrails.py` | LLM/template draft + safety checks | Student 4 |
-| Audit + portfolio | `src/audit_logger.py`, `src/portfolio_summary.py` | Accountability log + segment view | Student 5 |
-| Dashboard | `app.py` | Thin Streamlit presentation layer | Student 5 |
-| Zero-shot bake-off + evaluation | `src/zero_shot_compare.py`, `notebooks/` | Trained-vs-zero-shot comparison, eval notebooks, reports | Student 6 |
+| Config, contracts & integration | `src/config.py`, `src/contracts.py`, `src/pipeline.py` | Frozen interfaces, end-to-end orchestration | Krishna Mathur |
+| NLP pipeline & translation | `src/nlp_pipeline.py`, `src/translation.py` | Language detect → translate → classify | Kartik Joshi |
+| Entity extraction & multilingual | `src/entity_extraction.py`, `src/multilingual_native.py` | spaCy + regex + multilingual keywords / embeddings | Neha Thapa |
+| Churn model & fairness | `src/churn_model.py`, `src/train_churn_model.py` | Tabular propensity + fairness audit + CV | Harsh Verma |
+| Fusion & decision engine | `src/fusion.py`, `src/decision_engine.py` | Combine risk + transparent if/elif policy | Gagandeep Singh |
+| Outreach + guardrails | `src/outreach_generator.py`, `src/guardrails.py` | LLM/template draft + safety checks | Tanishk Verma |
+| Dashboard, UI & portfolio | `app.py`, `src/ui.py`, `src/portfolio_summary.py`, `src/audit_logger.py` | Streamlit console, theming, segment view, audit log | Anish Borkar |
+| Evaluation & innovation | `src/zero_shot_compare.py`, `src/train_lstm.py`, `src/cross_validation.py`, `notebooks/` | Bake-off, LSTM, robustness, eval notebooks | Zedan Parol |
 
 **Engineering principle:** `app.py` contains **no** model loading, business logic,
 or data wrangling — it only calls functions in `src/`. Models load once via

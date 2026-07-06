@@ -1,5 +1,8 @@
 # Project Wafa — Ethics Statement
 
+**Team:** Krishna Mathur · Kartik Joshi · Neha Thapa · Harsh Verma · Gagandeep Singh ·
+Tanishk Verma · Anish Borkar · Zedan Parol
+
 Each point below is backed by a **concrete finding from this build**, not just a
 policy statement.
 
