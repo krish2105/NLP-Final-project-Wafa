@@ -1,26 +1,17 @@
-# Core (required — the platform runs on these alone, CPU-only)
-pandas
-numpy
-scikit-learn
-joblib
-matplotlib
-seaborn
-streamlit
-plotly
-pydantic
+# SLIM / cloud-safe requirements — used by Streamlit Community Cloud.
+#
+# The free tier (~1GB RAM) cannot run torch + transformers + Qwen, so this file
+# deliberately omits them. The app degrades gracefully: it serves the committed
+# TF-IDF + churn models, rule-based outreach, regex/keyword entities, and the
+# pre-computed evaluation metrics/figures — every tab works.
+#
+# For the FULL local experience (DistilBERT, translation, Qwen, spaCy), use:
+#     pip install -r requirements-full.txt
 
-# NLP / transformers (enable the DistilBERT + translation + LLM routes).
-# The platform degrades gracefully to trained TF-IDF + rule-based drafts if
-# these are absent, so they are effectively optional for a first run.
-torch
-transformers
-accelerate>=1.1.0
-sentencepiece
-sacremoses
-spacy
-sentence-transformers
+streamlit>=1.40
+pandas>=2.0
+numpy>=1.26
+scikit-learn==1.6.1   # pinned to match the committed .joblib models
+joblib>=1.3
+plotly>=5.20
 langdetect
-
-# Optional accelerators (safe to skip on CPU laptops)
-xgboost
-bitsandbytes

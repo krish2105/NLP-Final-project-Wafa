@@ -9,27 +9,59 @@ human-reviewed outreach draft). **Nothing is ever auto-sent.**
 
 ---
 
-## Quick start (laptop, CPU-only, zero downloads)
+## Requirements: slim vs full
+
+| File | Use | Contents |
+|---|---|---|
+| `requirements.txt` | **Streamlit Cloud / minimal local** | streamlit, pandas, scikit-learn, plotly … (no torch) |
+| `requirements-full.txt` | **Full local features** | + torch, transformers, spaCy, Qwen, sentence-transformers |
+
+The app **degrades gracefully**: with the slim set it serves the committed TF-IDF +
+churn models, rule-based outreach, regex entities, and pre-computed metrics/figures —
+every tab works. Installing the full set unlocks DistilBERT, translation, and the
+Qwen outreach LLM automatically.
+
+## Quick start (laptop)
 
 ```bash
 cd project_wafa
 python -m venv .venv && source .venv/bin/activate        # optional
+
+# Minimal (fast, no heavy downloads) — runs on the committed models:
 pip install -r requirements.txt
 
-# 1) Train the required models (fast, sklearn)
-python src/train_churn_model.py       # churn model + nationality fairness audit
-python src/train_text_models.py       # TF-IDF baseline (+ DistilBERT if transformers installed)
+# …or FULL features (DistilBERT, translation, Qwen, spaCy):
+pip install -r requirements-full.txt
 
-# 2) (optional) build the segment view / seed metrics
+# (optional) retrain / regenerate artifacts
+python src/train_churn_model.py                          # churn model + fairness audit
+python src/train_text_models.py --distilbert --epochs 12 # TF-IDF baseline + DistilBERT
 python -m src.portfolio_summary
 
-# 3) Launch the dashboard
+# Launch the dashboard
 streamlit run app.py
 ```
 
-The **default path needs no model downloads**: it uses the trained TF-IDF text
-classifier, the sklearn churn model, native-keyword multilingual entity extraction,
-and rule-based outreach templates.
+## 🚀 Deploy to Streamlit Community Cloud (free)
+
+The repo is deploy-ready — `app.py` is at the root, `requirements.txt` is the
+cloud-safe slim set, and `.streamlit/config.toml` sets the theme.
+
+1. Push to GitHub (already done).
+2. Go to **https://share.streamlit.io** and sign in with the GitHub account that owns the repo.
+3. Click **Create app → Deploy a public app from GitHub**.
+4. Fill in:
+   - **Repository:** `krish2105/NLP-Final-project-Wafa`
+   - **Branch:** `main`
+   - **Main file path:** `app.py`
+   - **App URL:** pick a subdomain, e.g. `project-wafa` → `https://project-wafa.streamlit.app`
+   - **Advanced settings → Python version:** `3.11`
+5. Click **Deploy** and wait ~2–5 min for the first build.
+
+On the cloud (free tier ~1 GB RAM) the app runs in light mode: **TF-IDF classifier +
+rule-based outreach**. The Model Evaluation tab still shows the full **DistilBERT** and
+**zero-shot bake-off** numbers (read from the committed metrics JSON), so nothing is lost
+for the demo. To show the live Qwen LLM drafting, run locally with `requirements-full.txt`.
 
 ### Enabling the heavy (optional) models
 Install the NLP extras (`transformers`, `spacy`, etc. — already in

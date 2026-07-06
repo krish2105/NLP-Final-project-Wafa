@@ -10,7 +10,11 @@ git clone https://github.com/krish2105/NLP-Final-project-Wafa.git
 cd NLP-Final-project-Wafa
 
 python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+
+# Full local features (DistilBERT, translation, Qwen, spaCy):
+pip install -r requirements-full.txt
+# …or the slim/cloud set (TF-IDF + rule-based, no torch):
+# pip install -r requirements.txt
 
 # Optional heavy models (DistilBERT / translation / Qwen). If the spaCy CLI fails on
 # newer click, install the model wheel directly:

@@ -1,0 +1,13 @@
+# Base theme for the first paint (before the app injects its own light/dark CSS).
+# The in-app sidebar toggle switches between full light and dark themes at runtime.
+[theme]
+base = "light"
+primaryColor = "#1a6fb0"
+backgroundColor = "#eef2f7"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#0f1c2e"
+font = "sans serif"
+
+[server]
+# Keep uploads small; this app takes text input, not file uploads.
+maxUploadSize = 5

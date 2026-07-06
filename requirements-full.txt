@@ -1,0 +1,31 @@
+# FULL local stack — enables DistilBERT fine-tuning, translation (opus-mt/NLLB),
+# the Qwen outreach LLM, spaCy NER, and the zero-shot bake-off.
+# Use this for local development:  pip install -r requirements-full.txt
+#
+# NOTE: do NOT use this on Streamlit Community Cloud (free tier ~1GB RAM cannot
+# hold torch + transformers + Qwen). The cloud deploy uses the slim requirements.txt.
+
+# Core
+pandas
+numpy
+scikit-learn
+joblib
+matplotlib
+seaborn
+streamlit
+plotly
+pydantic
+
+# NLP / transformers
+torch
+transformers
+accelerate>=1.1.0
+sentencepiece
+sacremoses
+spacy
+sentence-transformers
+langdetect
+
+# Optional accelerators
+xgboost
+bitsandbytes
