@@ -24,6 +24,8 @@ The platform has three capabilities:
 
 ## 2. Flow diagram
 
+![Architecture](../outputs/figures/architecture.png)
+
 ```mermaid
 flowchart LR
     A[Raw Message + Customer ID] --> B[Data Loader]
@@ -134,6 +136,25 @@ AuditLogRecord   = {"timestamp","message_id","customer_id","issue_type","churn_s
   rows, so the fair reference is the held-out trained numbers (still ≥0.98) — the
   zero-shot model saw no training data. Conclusion: at this data scale a small **owned**
   model wins decisively on accuracy, latency, cost, privacy, and multilingual consistency.
+- **From-scratch bi-LSTM** (`src/train_lstm.py`): a PyTorch embedding+bi-LSTM reaches
+  **0.62** on issue_type — trailing TF-IDF/DistilBERT as expected with ~190 training
+  rows (a randomly-initialised recurrent net needs more data). Included to demonstrate
+  DL breadth and the honest trade-off; it would benefit most from an extended dataset.
+- **Trained-model scoreboard (issue_type):** TF-IDF 1.00 ≈ DistilBERT 0.98 > multilingual
+  embeddings 0.97 > LSTM 0.62 > zero-shot Qwen 0.55.
+
+### 5.2b Multilingual route — translate-then-classify vs multilingual-native
+We implemented **both** routes and compared them (`src/multilingual_native.py`,
+`src/translation_audit.py`):
+- **Translate-then-classify (PRIMARY):** faithful for Arabic (1.00) and Tagalog (1.00),
+  but **fails on romanised Hindi** — `opus-mt-hi-en` expects Devanagari and mistranslates
+  Hinglish into nonsense. We detect romanised Hindi and skip translation rather than act
+  on garbage (`translation.is_romanised`).
+- **Multilingual-native (ALTERNATIVE):** `paraphrase-multilingual-MiniLM-L12-v2` + LogReg
+  classifies **without translation** — 0.97 overall and **Hindi 1.00**, sidestepping the
+  translation cliff. We keep translate-then-classify as primary (single English classifier +
+  reuse English spaCy for entities) but document the native route as the evidence-backed
+  alternative and use it as the fallback signal for romanised text.
 
 ### 5.3 Customer churn model — LogReg vs Random Forest
 - Trained **both** Logistic Regression and Random Forest on 11 behavioural features

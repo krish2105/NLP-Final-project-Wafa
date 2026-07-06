@@ -1,0 +1,29 @@
+{
+  "route": "multilingual-native (paraphrase-multilingual-MiniLM-L12-v2 + LogReg)",
+  "target": "issue_type",
+  "accuracy": 0.9683,
+  "macro_f1": 0.9682,
+  "per_language_accuracy": {
+    "ar": {
+      "language_name": "Arabic",
+      "n": 12,
+      "accuracy": 1.0
+    },
+    "en": {
+      "language_name": "English",
+      "n": 30,
+      "accuracy": 1.0
+    },
+    "hi": {
+      "language_name": "Hindi",
+      "n": 6,
+      "accuracy": 1.0
+    },
+    "tl": {
+      "language_name": "Tagalog",
+      "n": 15,
+      "accuracy": 0.8667
+    }
+  },
+  "finding": "The multilingual-native route classifies without translation, so it handles romanised Hindi natively — the case where translate-then-classify (opus-mt-hi-en) fails. We keep translate-then-classify as the PRIMARY route (single English classifier, reuse English spaCy for entities) but document this as the defensible alternative, with evidence: comparable accuracy and no per-language translation cliff."
+}

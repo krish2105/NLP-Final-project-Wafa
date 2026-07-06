@@ -42,6 +42,7 @@ def run_pipeline(
     message_id: Optional[str] = None,
     language: Optional[str] = None,
     use_llm: bool = True,
+    match_language: bool = False,
 ) -> Dict:
     customer_row = get_customer_row(customer_id) or _fallback_customer(customer_id)
 
@@ -60,7 +61,8 @@ def run_pipeline(
     }
 
     decision = decide(nlp_output, fused, customer_row)
-    outreach = generate_outreach(nlp_output, decision, customer_row, use_llm=use_llm)
+    outreach = generate_outreach(nlp_output, decision, customer_row, use_llm=use_llm,
+                                 match_language=match_language)
 
     return {
         "customer_row": customer_row,

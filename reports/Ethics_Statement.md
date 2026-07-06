@@ -117,6 +117,15 @@ excludes it). The trained model's predicted churn probabilities by region:
 **Spread (max − min mean) = 0.089 → "roughly even"** (threshold 0.10). The model is
 not visibly proxying nationality. Saved to `outputs/metrics/fairness_audit.json`.
 
+## 6b. Code-switching & own-language service
+The data is real **code-switched** text (romanised Hinglish/Taglish). Rather than
+ignore it, we handle it: romanised-script detection routes Hindi away from the
+broken translation path, native/romanised keyword entities catch leaver/closure
+intent, and the multilingual-native classifier reads mixed-script text directly
+(Hindi 1.00). For outreach, the Qwen LLM can **draft in the customer's own language**
+(e.g. Arabic) — with an explicit warning that the English-oriented keyword guardrails
+need a fluent human reviewer, so we never over-trust a non-English draft.
+
 ## 7. Data limitations
 Synthetic data (`generate_wafa_data.py`), small (252 / 240 rows), with churn drivers
 deliberately and strongly encoded — the near-perfect scores reflect the **generator**,

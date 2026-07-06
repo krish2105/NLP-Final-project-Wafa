@@ -7,6 +7,16 @@ It triages multilingual customer messages and, for each one:
 churn risk, per-customer and per-segment) → **Act** (transparent retention action +
 human-reviewed outreach draft). **Nothing is ever auto-sent.**
 
+![Architecture](outputs/figures/architecture.png)
+
+### Dashboard preview
+A 4-tab Streamlit console with a light/dark toggle. _Live UI screenshots go in
+`assets/` — drop `dashboard_light.png`, `dashboard_dark.png`, and
+`live_console.png` there and they'll render below._
+
+<!-- ![Light mode](assets/dashboard_light.png) -->
+<!-- ![Dark mode](assets/dashboard_dark.png) -->
+
 ---
 
 ## Requirements: slim vs full
@@ -76,6 +86,12 @@ python src/train_text_models.py --distilbert --epochs 12  # fine-tune DistilBERT
 # this small (~190-row) set (issue acc ~0.60). At 12 epochs: issue 0.984, churn 1.00.
 
 python -m src.zero_shot_compare                           # innovation: trained vs zero-shot LLM bake-off
+python -m src.train_lstm                                  # from-scratch bi-LSTM (DL breadth)
+python -m src.multilingual_native                         # multilingual-native route (no translation)
+python -m src.translation_audit                           # translation quality per language (Hindi finding)
+python -m src.cross_validation                            # 5-fold CV + noise robustness
+python -m src.outreach_compare                            # Qwen vs Flan-T5 outreach bake-off
+python -m src.make_diagram                                # render architecture.png
 ```
 Translation (opus-mt / NLLB) and the outreach LLM (**Qwen2.5-0.5B first**, then
 1.5B / Flan-T5) load **automatically and lazily**; if any fail to download, the

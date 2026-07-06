@@ -1,0 +1,15 @@
+{
+  "model": "bi-LSTM from scratch (PyTorch)",
+  "target": "issue_type",
+  "accuracy": 0.619,
+  "macro_f1": 0.6249,
+  "params": {
+    "emb_dim": 64,
+    "hidden_dim": 64,
+    "bidirectional": true,
+    "epochs": 25,
+    "vocab_size": 306,
+    "max_len": 40
+  },
+  "finding": "The from-scratch bi-LSTM reaches accuracy 0.619 on issue_type. With only ~190 training messages it trails the TF-IDF baseline and fine-tuned DistilBERT (both ~1.0) — expected at this data scale, where a small model with strong priors (char n-grams) or transfer learning beats a randomly-initialised recurrent net. Reporting this honestly demonstrates the trade-off; the LSTM would benefit most from a larger/extended dataset."
+}

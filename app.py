@@ -170,10 +170,14 @@ with tab_console:
             )
             selected_cid = st.text_input("Customer ID", value="FB1000")
 
-        b1, b2 = st.columns([1, 2])
+        b1, b2, b3 = st.columns([1.2, 1.5, 1.5])
         use_llm = b2.toggle(
-            "Use open LLM for the draft (Qwen2.5-0.5B) — else fast rule-based template",
-            value=False,
+            "Use open LLM (Qwen2.5-0.5B) for the draft",
+            value=False, help="Off = fast rule-based template.",
+        )
+        match_lang = b3.toggle(
+            "Draft in customer's language",
+            value=False, help="Needs the LLM on. Qwen drafts in Arabic/Tagalog/etc.",
         )
         go = b1.button("▶ Process message", type="primary", use_container_width=True)
 
@@ -181,7 +185,7 @@ with tab_console:
         with st.spinner("Running Listen → Understand → Act…"):
             st.session_state["result"] = run_pipeline(
                 selected_text, selected_cid, message_id=selected_mid,
-                language=selected_lang, use_llm=use_llm,
+                language=selected_lang, use_llm=use_llm, match_language=match_lang,
             )
 
     result = st.session_state.get("result")
@@ -424,6 +428,54 @@ with tab_eval:
         st.caption("Honesty caveat: " + zeroshot.get("honesty_caveat", ""))
     else:
         st.info("Run `python -m src.zero_shot_compare` to populate the bake-off.")
+
+    # -- four-way trained scoreboard (issue_type) --
+    st.markdown(ui.section("🏁 Trained-model scoreboard (issue_type)"), unsafe_allow_html=True)
+    lstm = _metric_json("lstm_metrics.json")
+    mln = _metric_json("multilingual_native.json")
+    board = []
+    if text_metrics and "tfidf_issue" in text_metrics["models"]:
+        board.append({"Approach": "TF-IDF + LogReg", "Type": "trained (classical)",
+                      "Accuracy": text_metrics["models"]["tfidf_issue"]["accuracy"]})
+    if text_metrics and "distilbert_issue" in text_metrics["models"]:
+        board.append({"Approach": "DistilBERT (fine-tuned)", "Type": "trained (transformer)",
+                      "Accuracy": text_metrics["models"]["distilbert_issue"]["accuracy"]})
+    if mln:
+        board.append({"Approach": "Multilingual embeddings + LogReg", "Type": "trained (no translation)",
+                      "Accuracy": mln["accuracy"]})
+    if lstm:
+        board.append({"Approach": "Bi-LSTM from scratch", "Type": "trained (recurrent)",
+                      "Accuracy": lstm["accuracy"]})
+    if zeroshot and "zero_shot_qwen0.5b" in zeroshot["results"]:
+        board.append({"Approach": "Qwen0.5B zero-shot", "Type": "not trained (prompt only)",
+                      "Accuracy": zeroshot["results"]["zero_shot_qwen0.5b"]["accuracy"]})
+    if board:
+        st.markdown(ui.render_table(pd.DataFrame(board).sort_values("Accuracy", ascending=False), height=220),
+                    unsafe_allow_html=True)
+        st.caption("Honest finding: trained TF-IDF/DistilBERT lead; the from-scratch LSTM and zero-shot LLM "
+                   "trail at this small data scale — the expected, defensible trade-off.")
+
+    # -- credible evaluation: CV + robustness + translation audit --
+    cv = _metric_json("cross_validation.json")
+    ta = _metric_json("translation_audit.json")
+    ev1, ev2 = st.columns(2)
+    with ev1:
+        st.markdown(ui.section("Cross-validation & noise robustness"), unsafe_allow_html=True)
+        if cv:
+            rows = []
+            for n, v in cv["churn_model_cv"].items():
+                rows.append({"Model": n, "ROC-AUC (5-fold)": f"{v['roc_auc']['mean']}±{v['roc_auc']['std']}"})
+            for t, v in cv["robustness_noise_test"].items():
+                rows.append({"Model": f"text {t} (clean→noisy)",
+                             "ROC-AUC (5-fold)": f"{v['clean_accuracy']}→{v['noisy_accuracy']}"})
+            st.markdown(ui.render_table(pd.DataFrame(rows), height=200), unsafe_allow_html=True)
+    with ev2:
+        st.markdown(ui.section("Translation quality audit"), unsafe_allow_html=True)
+        if ta:
+            rows = [{"Language": v["language_name"], "Route": v["route"], "Faithful rate": v["faithful_rate"]}
+                    for v in ta["per_language"].values()]
+            st.markdown(ui.render_table(pd.DataFrame(rows), height=200), unsafe_allow_html=True)
+            st.caption("Romanised Hindi (0.0) is left untranslated on purpose — honest fairness finding.")
 
     # -- fairness --
     fcol1, fcol2 = st.columns(2)

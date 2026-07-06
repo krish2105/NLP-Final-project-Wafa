@@ -108,17 +108,26 @@ where relationship-manager time earns the most.
 
 ## 7. Estimated business impact (retention economics)
 
-Illustrative, using platform outputs and a 5%-of-CLV offer cap:
+Computed from the **actual `clv_estimate_aed`** of the 50 High-band customers
+(not assumptions), with the platform's 5%-of-CLV offer cap:
 
-- 50 High-risk customers. If their average CLV is ~AED 30,000, the **maximum**
-  total offer exposure is 50 × 5% × 30,000 = **AED 75,000**.
-- Retaining even **one-third** (≈17 customers) preserves ≈ 17 × 30,000 =
-  **AED 510,000** of CLV — a ~6.8× return on the capped offer budget, before
-  counting cheaper service-only saves.
+| Metric | Value |
+|---|---|
+| High-risk customers | **50** |
+| Total CLV at risk (High band) | **AED 3,202,902** |
+| Average CLV of a High-risk customer | AED 64,058 |
+| Max total offer exposure (5% of CLV) | **AED 160,145** |
+| Premium/Private High-risk (concentrated value) | 20 customers · **AED 2,534,452** CLV |
+| CLV preserved if we retain just 1/3 of High-risk | **AED 1,067,634** |
+| **Return on the capped offer budget** | **≈ 6.7×** |
+
+- The value is **concentrated**: 20 of the 50 High-risk customers (Premium/Private)
+  hold AED 2.53M of the AED 3.20M at-risk CLV — so relationship-manager time spent
+  there earns the most, exactly where the decision engine routes them.
 - **Team-capacity math:** at ~4 minutes of human review per Wafa-triaged case, one
-  agent can clear ~120 cases/day. The platform turns "read every message" into
-  "review a ranked, pre-drafted shortlist," which is the actual bottleneck for an
-  18-person team facing thousands of messages.
+  agent clears ~120 cases/day. The platform turns "read every message" into "review a
+  ranked, pre-drafted shortlist" — the real bottleneck for an 18-person team facing
+  thousands of messages.
 
 ## 8. Stated limitations (read before trusting the numbers)
 

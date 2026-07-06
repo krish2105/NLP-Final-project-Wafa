@@ -168,7 +168,8 @@ def _try_load_models() -> None:
     _state.kind = "template"
 
 
-def _build_user_prompt(nlp_output: dict, decision: dict, customer_row: dict) -> str:
+def _build_user_prompt(nlp_output: dict, decision: dict, customer_row: dict,
+                       target_language: str = "en") -> str:
     issue_human = _ISSUE_HUMAN.get(nlp_output.get("issue_type", ""), "your query")
     offer_line = (
         f"You may reference a goodwill gesture up to AED {decision['max_offer_value_aed']:g} "
@@ -182,6 +183,9 @@ def _build_user_prompt(nlp_output: dict, decision: dict, customer_row: dict) -> 
         if decision.get("dignified_goodbye")
         else "Acknowledge their topic and offer a concrete, helpful next step."
     )
+    lang_line = ""
+    if target_language and target_language != "en":
+        lang_line = f"Write the ENTIRE message in {config.LANGUAGE_NAMES.get(target_language, target_language)}.\n"
     return (
         f"Draft a short customer outreach message for a bank.\n"
         f"Internal action (context only — do NOT name it in the message): {decision['action']}\n"
@@ -189,9 +193,9 @@ def _build_user_prompt(nlp_output: dict, decision: dict, customer_row: dict) -> 
         f"Customer segment: {customer_row.get('segment', 'Mass')}\n"
         f"{offer_line}\n"
         f"{goodbye_line}\n"
+        f"{lang_line}"
         f"Rules: do not mention internal system/pathway/action names; do not invent "
-        f"products, fees, or amounts; write 3-5 sentences, warm and professional; "
-        f"start with 'Dear valued customer,'."
+        f"products, fees, or amounts; write 3-5 sentences, warm and professional."
     )
 
 
@@ -201,11 +205,12 @@ def _template_draft(nlp_output: dict, decision: dict) -> str:
     return tmpl.format(issue_human=issue_human)
 
 
-def _llm_draft(nlp_output: dict, decision: dict, customer_row: dict) -> Optional[str]:
+def _llm_draft(nlp_output: dict, decision: dict, customer_row: dict,
+               target_language: str = "en") -> Optional[str]:
     try:
         import torch
 
-        user = _build_user_prompt(nlp_output, decision, customer_row)
+        user = _build_user_prompt(nlp_output, decision, customer_row, target_language)
         if _state.kind == "causal":
             messages = [
                 {"role": "system", "content": OUTREACH_SYSTEM_PROMPT},
@@ -233,31 +238,46 @@ def _llm_draft(nlp_output: dict, decision: dict, customer_row: dict) -> Optional
 
 
 def generate_outreach(
-    nlp_output: dict, decision: dict, customer_row: dict, use_llm: bool = True
+    nlp_output: dict, decision: dict, customer_row: dict, use_llm: bool = True,
+    match_language: bool = False,
 ) -> Dict:
-    """Produce an OutreachOutput dict (always human-review-gated)."""
+    """Produce an OutreachOutput dict (always human-review-gated).
+
+    match_language=True asks the LLM (Qwen, if loaded) to draft in the customer's
+    own language — a stretch feature (brief: "outreach in the customer's language").
+    Only supported by the causal LLM tier; templates/Flan stay English.
+    """
     draft_text: Optional[str] = None
+    customer_lang = nlp_output.get("language", "en")
+    drafted_language = "en"
 
     if use_llm:
         _try_load_models()
         if _state.kind in ("causal", "seq2seq"):
-            draft_text = _llm_draft(nlp_output, decision, customer_row)
+            want_lang = customer_lang if (match_language and _state.kind == "causal") else "en"
+            draft_text = _llm_draft(nlp_output, decision, customer_row, target_language=want_lang)
+            if draft_text and want_lang != "en":
+                drafted_language = want_lang
 
     if not draft_text:
         draft_text = _template_draft(nlp_output, decision)
 
     guard = check_draft(draft_text, decision)
 
-    draft_language = nlp_output.get("language", "en")
     language_note = ""
-    if draft_language != "en":
+    if drafted_language == "en" and customer_lang != "en":
         language_note = (
             f"\n\n[Draft written in English — flag for human translation to "
-            f"{config.LANGUAGE_NAMES.get(draft_language, draft_language)}.]"
+            f"{config.LANGUAGE_NAMES.get(customer_lang, customer_lang)}.]"
+        )
+    elif drafted_language != "en":
+        guard["guardrail_warnings"].append(
+            f"Draft is in {config.LANGUAGE_NAMES.get(drafted_language, drafted_language)} — "
+            "keyword guardrails are English-oriented, so a human fluent in the language must review."
         )
 
     return {
-        "draft_language": "en",
+        "draft_language": drafted_language,
         "draft_text": draft_text + language_note,
         "guardrail_passed": guard["guardrail_passed"],
         "guardrail_warnings": guard["guardrail_warnings"],
